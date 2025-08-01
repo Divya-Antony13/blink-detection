@@ -16,7 +16,7 @@ Jinja2==3.1.6
 kiwisolver==1.4.8
 MarkupSafe==3.0.2
 matplotlib==3.10.5
-mediapipe==0.10.12
+mediapipe==0.10.14
 ml_dtypes==0.5.3
 numpy==2.2.6
 opencv-contrib-python==4.12.0.88
@@ -32,5 +32,6 @@ scipy==1.16.1
 six==1.17.0
 sounddevice==0.5.2
 Werkzeug==3.1.3
+
 
 
