@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Multi-Person Blink Detection</title>
+    <style>
+        /* Background and text color changes */
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background: #1a1a1a; /* Dark background */
+            color: #fff; /* Light text for contrast */
+            margin: 0;
+            padding: 20px;
+            transition: background 0.5s ease, color 0.5s ease;
+        }
+
+        /* Container for main content */
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: #2e2e2e; /* Darker background for content box */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.3);
+            transition: background 0.5s ease;
+        }
+
+        /* Header styling */
+        h1 {
+            color: #9b4d96; /* Mauve color for title */
+            animation: fadeIn 1.5s ease;
+        }
+
+        /* Video feed styling */
+        #video-feed {
+            width: 800px;
+            height: 600px;
+            border: 3px solid #b28d8c; /* Plum-colored border */
+            border-radius: 5px;
+            margin: 20px auto;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Styling for person stats container */
+        .person-stats {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            animation: fadeIn 2s ease-in-out;
+        }
+
+        /* Stat box styling */
+        .stat-box {
+            padding: 15px 25px;
+            border-radius: 8px;
+            min-width: 150px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            animation: slideIn 1.5s ease-out;
+        }
+
+        /* Stat value text styling */
+        .stat-value {
+            font-size: 22px;
+            font-weight: bold;
+            margin-top: 5px;
+            font-family: 'Courier New', Courier, monospace;
+        }
+
+        /* Footer note styling */
+        .footer-note {
+            font-size: 13px;
+            margin-top: 40px;
+            color: #bbb;
+            transition: color 0.5s ease;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideIn {
+            0% {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Hover effect for stat boxes */
+        .stat-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        /* Funny dialogue box */
+        #funny-dialogue {
+            font-size: 18px;
+            color: #9b4d96;
+            font-style: italic;
+            margin-top: 20px;
+            animation: fadeIn 2.5s ease-in-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>👁️ Real-Time Blink Detection (Multi-Person) 👁️</h1>
+
+        <img id="video-feed" src="{{ url_for('video_feed') }}">
+
+        <h2>Individual Blink Counts</h2>
+        <div id="person-container" class="person-stats">
+            <!-- Person stat boxes will be populated here -->
+        </div>
+
+        <!-- Funny dialogue section -->
+        <div id="funny-dialogue">
+            <!-- Random blink-related dialogue will appear here -->
+        </div>
+
+        <div class="footer-note">
+            Blink counts are estimated per face using position-based tracking.<br>
+            Faces not seen for 10+ seconds are removed from tracking.
+        </div>
+    </div>
+
+    <script>
+        // Map to keep consistent color for each person
+        const personColors = {};
+
+        // List of funny dialogues
+        const dialogues = [
+            "You blinked? That’s 0.0005 calories burned. You’re basically an athlete now.",
+            "Every blink you take, the algorithm judges your laziness.",
+            "Congratulations! You’ve blinked 50 times today. That's 49 more than your crush noticed you.",
+            "Blink once if you’re confused. Blink twice if you’re still confused. Keep blinking and we’ll notify your brain.",
+            "If blinking was an Olympic sport, you’d still come second to a goldfish.",
+            "Analyzing... Yep, that blink had no purpose whatsoever.",
+            "Fun Fact: The average person blinks 15-20 times per minute. You? A legend. 42 and counting.",
+            "Warning: Excessive blinking may cause suspicion in job interviews.",
+            "Your eyelids are doing more work than your CPU right now.",
+            "Keep blinking. You’re single-handedly keeping this website alive."
+        ];
+
+        // Function to get a random dialogue
+        function getRandomDialogue() {
+            const randomIndex = Math.floor(Math.random() * dialogues.length);
+            return dialogues[randomIndex];
+        }
+
+        // Function to update stats and show a random dialogue
+        function updateStats() {
+            fetch('/get_stats')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('person-container');
+                    container.innerHTML = '';
+
+                    const persons = data.persons;
+                    for (const faceId in persons) {
+                        if (!personColors[faceId]) {
+                            personColors[faceId] = getRandomColor();
+                        }
+
+                        const statBox = document.createElement('div');
+                        statBox.className = 'stat-box';
+                        statBox.style.backgroundColor = personColors[faceId];
+
+                        const label = document.createElement('div');
+                        label.textContent = `Person ${faceId}`;
+
+                        const value = document.createElement('div');
+                        value.className = 'stat-value';
+                        value.textContent = persons[faceId] + ' blinks';
+
+                        statBox.appendChild(label);
+                        statBox.appendChild(value);
+                        container.appendChild(statBox);
+                    }
+
+                    // Display a random funny dialogue
+                    const funnyDialogueElement = document.getElementById('funny-dialogue');
+                    funnyDialogueElement.textContent = getRandomDialogue();
+                });
+        }
+
+        // Function to generate a random color
+        function getRandomColor() {
+            const hue = Math.floor(Math.random() * 360);
+            return `hsl(${hue}, 70%, 50%)`;
+        }
+
+        setInterval(updateStats, 1000);
+    </script>
+</body>
+</html>
