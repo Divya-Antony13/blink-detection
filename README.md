@@ -1,47 +1,54 @@
 <img width="3188" height="1202" alt="frame (3)" src="https://github.com/user-attachments/assets/517ad8e9-ad22-457d-9538-a9e62d137cd7" />
 
 
-# [Project Name] 🎯
+# MultiBlink Madness 🎯
 
 
 ## Basic Details
-### Team Name: [Name]
+### Team Name: Pride
 
 
 ### Team Members
-- Team Lead: [Name] - [College]
-- Member 2: [Name] - [College]
-- Member 3: [Name] - [College]
+- Team Lead: [Name] - Divya Antony
+- Member 2: [Name] - Nayana Manoj
+  
 
 ### Project Description
-[2-3 lines about what your project does]
+A groundbreaking, life-derailing web app that uses real-time face detection to count blinks from multiple people
+— because one face was simply not useless enough. 
+Presenting: MultiBlink Madness– The More You Blink, The Less It Matters.
+
 
 ### The Problem (that doesn't exist)
-[What ridiculous problem are you solving?]
+Too many people are blinking… unchecked.
+Billions of blinks go unnoticed every day. 
+What if we told you there’s no blinking justice in this world?
+Who blinks more in class? 
+Who’s the blink king of your squad?
+We had to find out. No one asked us to.
+
 
 ### The Solution (that nobody asked for)
-[How are you solving it? Keep it fun!]
+We combined face detection, blink tracking, and the raw power of useless ambition to create a web app that not only counts blinks but also tells you statistics you’ll never use. Compete with your friends to become the “Blink Champion.” Stream your stats live. Make blinking weirdly competitive. Because why not doing something useless?
+
+
 
 ## Technical Details
 ### Technologies/Components Used
 For Software:
-- [Languages used]
-- [Frameworks used]
-- [Libraries used]
-- [Tools used]
-
-For Hardware:
-- [List main components]
-- [List specifications]
-- [List tools required]
+- Python,Html,CSS,javascript
+- Flask,opencv,Mediapipe
+- Numpy
+- vs code
 
 ### Implementation
 For Software:
 # Installation
-[commands]
+
+pip install -r requirements
 
 # Run
-[commands]
+python blink.py
 
 ### Project Documentation
 For Software:
@@ -49,48 +56,32 @@ For Software:
 # Screenshots (Add at least 3)
 ![Screenshot1](Add screenshot 1 here with proper name)
 *Add caption explaining what this shows*
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/3ebcd4d9-f0a0-4012-a714-885c5088d52b" />
 
 ![Screenshot2](Add screenshot 2 here with proper name)
 *Add caption explaining what this shows*
+<img width="1920" height="1200" alt="image" src="https://github.com/user-attachments/assets/3354e1a8-10cf-4e8d-a9e0-249d03a28752" />
 
-![Screenshot3](Add screenshot 3 here with proper name)
-*Add caption explaining what this shows*
-
-# Diagrams
-![Workflow](Add your workflow/architecture diagram here)
-*Add caption explaining your workflow*
-
-For Hardware:
-
-# Schematic & Circuit
-![Circuit](Add your circuit diagram here)
-*Add caption explaining connections*
-
-![Schematic](Add your schematic diagram here)
-*Add caption explaining the schematic*
-
-# Build Photos
-![Components](Add photo of your components here)
-*List out all components shown*
-
-![Build](Add photos of build process here)
-*Explain the build steps*
-
-![Final](Add photo of final product here)
-*Explain the final build*
 
 ### Project Demo
-# Video
-[Add your demo video link here]
-*Explain what the video demonstrates*
 
-# Additional Demos
-[Add any extra demo materials/links]
+
+https://github.com/user-attachments/assets/33789cd9-0f9b-45e9-9213-e32ba8e9f810
+
+
+It stares back. And counts how often you blink. And your friend. And that random person who just photobombed.  
+
+Yes, it detects multiple faces.  
+Yes, it tracks each person’s individual blink stats.  
+No, it doesn’t improve your life in any meaningful way.  
+But hey — now you can finally compete with your friends over who blinks more during awkward silences
+
+
 
 ## Team Contributions
-- [Name 1]: [Specific contributions]
-- [Name 2]: [Specific contributions]
-- [Name 3]: [Specific contributions]
+- Divya Antony: Front-end development
+- Nayana Manoj: Back-end development
+
 
 ---
 Made with ❤️ at TinkerHub Useless Projects 
